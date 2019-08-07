@@ -16,12 +16,13 @@ export default class Button extends HTMLElement {
         this.innerHTML = this.render()
     }
 
+    // classNames
     get clx(): string {
         const rootClasses = this.properties.class
         delete this.properties.class
         return `btn btn-${this.outline ? 'outline-' : ''}${this.color}${
             rootClasses ? ` ${rootClasses}` : ''
-        }`
+        }${this.block ? ' btn-block' : ''}`
     }
 
     get color(): string {
@@ -32,6 +33,11 @@ export default class Button extends HTMLElement {
     get outline(): boolean {
         delete this.properties.outline
         return this.hasAttribute('outline') && this.getAttribute('outline') !== 'false'
+    }
+
+    get block(): boolean {
+        delete this.properties.outline
+        return this.hasAttribute('block') && this.getAttribute('block') !== 'false'
     }
 
     render() {
