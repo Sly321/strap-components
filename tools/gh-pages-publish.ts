@@ -1,4 +1,4 @@
-const { cd, exec, echo, touch, cp } = require('shelljs')
+const { cd, exec, echo, touch, cp, mkdir } = require('shelljs')
 const { readFileSync } = require('fs')
 const url = require('url')
 
@@ -19,9 +19,9 @@ let ghToken = process.env.GH_TOKEN || 'Sly321'
 
 echo('Deploying docs!!!')
 cd('docs')
-cp('../public/index.html', '../docs/showcase/index.html')
+mkdir('showcase')
+cp('../public/index.html', 'showcase/index.html')
 cp('-R', '../dist', '../docs/dist')
-
 touch('.nojekyll')
 exec('git init')
 exec('git add .')
